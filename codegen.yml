@@ -1,4 +1,6 @@
 overwrite: true
+schema:
+  - 'https://countries.trevorblades.com/'
 documents:
   - src/query.graphql
 generates:
@@ -7,3 +9,6 @@ generates:
       - typescript
       - typescript-operations
       - typescript-react-query
+hooks:
+  afterAllFileWrite:
+    - prettier --write

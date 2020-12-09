@@ -1,39 +1,27 @@
-import { useState, useEffect } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from 'react'
+import { useFetchCountriesQuery } from './generated/queries'
 
-interface AppProps {}
+function App() {
+  const { data, isLoading } = useFetchCountriesQuery({
+    endpoint: 'https://countries.trevorblades.com/',
+    fetchParams: {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  })
 
-function App({}: AppProps) {
-  // Create the count state.
-  const [count, setCount] = useState(0)
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000)
-    return () => clearTimeout(timer)
-  }, [count, setCount])
-  // Return the App component.
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div>
+      <h1>Countries</h1>
+      {data?.countries.slice(0, 20).map(country => (
+        <li key={country.name}>
+          {country.name} ({country.emoji}) : {country.currency}
+        </li>
+      ))}
     </div>
   )
 }
