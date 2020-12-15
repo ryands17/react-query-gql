@@ -1,0 +1,28 @@
+{
+  "extends": ["config:base"],
+  "masterIssue": true,
+  "automerge": true,
+  "schedule": ["every 2 weeks"],
+  "packageRules": [
+    {
+      "packagePatterns": ["^@types/", "typesync"],
+      "groupName": "ts-types"
+    },
+    {
+      "packagePatterns": ["^@snowpack"],
+      "groupName": "snowpack"
+    },
+    {
+      "packagePatterns": ["^@testing-library", "jest"],
+      "groupName": "testing"
+    },
+    {
+      "packagePatterns": ["react", "react-dom"],
+      "groupName": "react"
+    },
+    {
+      "packagePatterns": ["^@graphql"],
+      "groupName": "codegen"
+    }
+  ]
+}
