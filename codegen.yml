@@ -9,6 +9,12 @@ generates:
       - typescript
       - typescript-operations
       - typescript-react-query
+    config:
+      fetcher:
+        endpoint: 'https://countries.trevorblades.com/'
+        fetchParams:
+          headers:
+            Content-Type: 'application/json'
 hooks:
   afterAllFileWrite:
     - prettier --write

@@ -2,14 +2,7 @@ import React from 'react'
 import { useFetchCountriesQuery } from './generated/queries'
 
 function App() {
-  const { data, isLoading } = useFetchCountriesQuery({
-    endpoint: 'https://countries.trevorblades.com/',
-    fetchParams: {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    },
-  })
+  const { data, isLoading } = useFetchCountriesQuery()
 
   if (isLoading) {
     return <div>Loading...</div>

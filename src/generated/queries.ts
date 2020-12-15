@@ -8,16 +8,11 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
   { [SubKey in K]: Maybe<T[SubKey]> }
 
-function fetcher<TData, TVariables>(
-  endpoint: string,
-  requestInit: RequestInit,
-  query: string,
-  variables?: TVariables
-) {
+function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
   return async (): Promise<TData> => {
-    const res = await fetch(endpoint, {
+    const res = await fetch('https://countries.trevorblades.com/', {
       method: 'POST',
-      ...requestInit,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query, variables }),
     })
 
@@ -160,15 +155,12 @@ export const FetchCountriesDocument = `
 }
     `
 export const useFetchCountriesQuery = (
-  dataSource: { endpoint: string; fetchParams?: RequestInit },
   variables?: FetchCountriesQueryVariables,
   options?: QueryConfig<FetchCountriesQuery>
 ) =>
   useQuery<FetchCountriesQuery>(
     ['fetchCountries', variables],
     fetcher<FetchCountriesQuery, FetchCountriesQueryVariables>(
-      dataSource.endpoint,
-      dataSource.fetchParams || {},
       FetchCountriesDocument,
       variables
     ),
