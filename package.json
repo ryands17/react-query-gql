@@ -25,7 +25,7 @@
     "@testing-library/jest-dom": "5.11.8",
     "@testing-library/react": "11.2.2",
     "@types/chai": "4.2.14",
-    "@types/prettier": "2.1.5",
+    "@types/prettier": "2.1.6",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "@types/snowpack-env": "2.3.3",
