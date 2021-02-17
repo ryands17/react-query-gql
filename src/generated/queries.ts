@@ -1,4 +1,4 @@
-import { useQuery, QueryConfig } from 'react-query'
+import { useQuery, UseQueryOptions } from 'react-query'
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
@@ -154,11 +154,14 @@ export const FetchCountriesDocument = `
   }
 }
     `
-export const useFetchCountriesQuery = (
+export const useFetchCountriesQuery = <
+  TData = FetchCountriesQuery,
+  TError = unknown
+>(
   variables?: FetchCountriesQueryVariables,
-  options?: QueryConfig<FetchCountriesQuery>
+  options?: UseQueryOptions<FetchCountriesQuery, TError, TData>
 ) =>
-  useQuery<FetchCountriesQuery>(
+  useQuery<FetchCountriesQuery, TError, TData>(
     ['fetchCountries', variables],
     fetcher<FetchCountriesQuery, FetchCountriesQueryVariables>(
       FetchCountriesDocument,
