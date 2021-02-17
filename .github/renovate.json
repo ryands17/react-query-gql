@@ -1,28 +1,45 @@
 {
   "extends": ["config:base"],
   "masterIssue": true,
-  "automerge": true,
-  "schedule": ["every 2 weeks on Friday"],
+  "schedule": ["every 3 weeks on Friday"],
   "packageRules": [
     {
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch",
+        "pin",
+        "digest",
+        "lockFileMaintenance",
+        "rollback",
+        "bump"
+      ],
+      "automerge": true
+    },
+    {
       "packagePatterns": ["^@types/", "typesync"],
-      "groupName": "ts-types"
+      "groupName": "ts-types",
+      "automerge": true
     },
     {
       "packagePatterns": ["^@snowpack"],
-      "groupName": "snowpack"
+      "groupName": "snowpack",
+      "automerge": true
     },
     {
       "packagePatterns": ["^@testing-library", "jest"],
-      "groupName": "testing"
+      "groupName": "testing",
+      "automerge": true
     },
     {
       "packagePatterns": ["react", "react-dom"],
-      "groupName": "react"
+      "groupName": "react",
+      "automerge": true
     },
     {
       "packagePatterns": ["^@graphql"],
-      "groupName": "codegen"
+      "groupName": "codegen",
+      "automerge": true
     }
   ]
 }
