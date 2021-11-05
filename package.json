@@ -70,7 +70,7 @@
   },
   "lint-staged": {
     "*.{tsx,ts}": [
-      "eslint --cache --max-warnings=0 ./src",
+      "eslint --cache ./src",
       "prettier --write --ignore-unknown ."
     ]
   }
