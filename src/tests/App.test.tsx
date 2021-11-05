@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import App from './App'
+import App from '../App'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 it('renders the first 20 countries', async () => {
@@ -8,7 +8,7 @@ it('renders the first 20 countries', async () => {
 
   // before fetching
   const loadingText = screen.getByText(/loading/i)
-  expect(document.body.contains(loadingText))
+  expect(document.body.contains(loadingText)).toBeTruthy()
 })
 
 const renderWithQueryClient = (children: JSX.Element) => {

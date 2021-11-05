@@ -1,11 +1,10 @@
 {
   "extends": ["config:base"],
   "masterIssue": true,
-  "schedule": ["on the 3 day of the month"],
+  "schedule": ["every 3 months on the 14 day of the month"],
   "packageRules": [
     {
       "matchUpdateTypes": [
-        "major",
         "minor",
         "patch",
         "pin",

@@ -8,13 +8,15 @@ function App() {
     return <div>Loading...</div>
   }
   return (
-    <div>
-      <h1>Countries</h1>
-      {data?.countries.slice(0, 20).map(country => (
-        <li key={country.name}>
-          {country.name} ({country.emoji}) : {country.currency}
-        </li>
-      ))}
+    <div className="m-4">
+      <h1 className="text-2xl font-bold">Countries:</h1>
+      <ul>
+        {data?.countries.slice(0, 20).map((country) => (
+          <li key={country.name} className="pb-2">
+            {country.name} ({country.emoji}) : {country.currency}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

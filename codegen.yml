@@ -12,9 +12,12 @@ generates:
     config:
       fetcher:
         endpoint: 'https://countries.trevorblades.com/'
-        fetchParams:
-          headers:
-            Content-Type: 'application/json'
+        fetchParams: >
+          {
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }
 hooks:
   afterAllFileWrite:
     - prettier --write
