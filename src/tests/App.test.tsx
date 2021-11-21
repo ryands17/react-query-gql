@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import App from '../App'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
@@ -7,20 +7,16 @@ it('shows the loading state', async () => {
   renderWithQueryClient(<App />)
 
   // before fetching
-  await waitFor(() => {
-    expect(screen.getByText(/loading/i)).toBeInTheDocument()
-  })
+  expect(screen.getByText(/loading/i)).toBeInTheDocument()
 })
 
 it('renders the first 20 countries', async () => {
   renderWithQueryClient(<App />)
 
-  await waitFor(() => {
-    expect(screen.getByTestId('country-list').children).toHaveLength(10)
-    expect(screen.getByTestId('country-list').children[0]).toHaveTextContent(
-      /andorra/i
-    )
-  })
+  expect((await screen.findByTestId('country-list')).children).toHaveLength(10)
+  expect(
+    (await screen.findByTestId('country-list')).children[0]
+  ).toHaveTextContent(/andorra/i)
 })
 
 const renderWithQueryClient = (children: JSX.Element) => {
